@@ -1,0 +1,36 @@
+.sideContainer{
+    background-color: #00C2FF;
+    border-radius: 30px;
+    /* width: 100%; */
+    height: 96vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    font-family: 'Roboto', sans-serif;
+}
+
+.username{
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: larger;
+}
+
+hr.username{
+    border: none;
+    height: 1px;
+    background-color: black;
+    width: 60%;
+}
+
+.pages{
+    text-decoration: none;
+    color: black;
+}
+
+h1.pages{
+    font-weight: 500
+}

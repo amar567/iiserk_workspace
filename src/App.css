@@ -5,3 +5,26 @@
     grid-template-columns: 16% 84%;
     align-content: space-evenly;
 }
+
+.rightside{
+    display: grid;
+    grid-template-rows: 10vh 86vh;
+}
+
+.nav{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.show{
+    display: block;
+}
+
+.hide{
+    display: none;
+}
+
+.rightBottom{
+    height: 86vh;
+    margin: 0 4vh;
+}
