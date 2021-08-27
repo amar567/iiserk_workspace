@@ -1,14 +1,14 @@
 .navbar_img{
     width: 5vh;
-}
-
-.setting{
-    width: 5vh;
     transition: transform 0.2s;
 }
 
 .rotate{
-    transform: rotate(60deg);
+    transform: rotate(-60deg);
+}
+
+.rotate_bell{
+    transform: rotate(-38deg);
 }
 
 .navbar{
@@ -19,18 +19,34 @@
 }
 
 .navbtns{
-    background-color: black;
+    background-color: unset;
     border: 0;
     margin: 0;
+    height: 8vh;
+    width: 8vh;
+    border-radius: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbtns.active{
+    background-color: rgba(255,255,255,0.15);
 }
 
 .settingsPanel{
-    width:400px;
-    height:600px;
+    width:28vw;
+    max-height:80vh;
     background-color:white;
     border-radius:30px;
     position:absolute;
-    top: 10vh;
+    top: 13vh;
     right: 8vh;
     z-index:10;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
+
+::-webkit-scrollbar {
+    width: 0px;
+  }

@@ -1,5 +1,9 @@
 /* we will be making navbar template here  */
 
+.App{
+    padding:2vh
+}
+
 .pageContainer{
     display: grid;
     grid-template-columns: 16% 84%;

@@ -16,7 +16,7 @@ export default class Sidebar extends Component {
     render() {
         return (
             <>
-                <div className={'sideContainer'}>
+                <div className={'sideContainer'} style={{backgroundColor:this.props.data.sdBackground}}>
 
                     <div>
                         <div style={{height:'8vh'}}></div>
@@ -31,20 +31,17 @@ export default class Sidebar extends Component {
                         <div style={{height:'1vh'}}></div>
 
                         <div style={{marginLeft:'2vw'}}>
-                            <a className="pages" href="/">
-                                <h1 className="pages">Home</h1>
-                            </a>
-                            <a className="pages" href="/course">
-                                <h1 className="pages">Course view</h1>
-                            </a>
-                            <a className="pages" href="/util">
-                                <h1 className="pages">Utility +</h1>
-                            </a>
+                                <h1 onClick={()=>{this.props.pageHandler(1)}} className="pages" style={(this.props.page === 1)?{textDecoration:'underline 3px'}:null} >Home</h1>
+                                <h1 onClick={()=>{this.props.pageHandler(2)}} className="pages" style={(this.props.page === 2)?{textDecoration:'underline 3px'}:null} >Course view</h1>
+                                <h1 onClick={()=>{this.props.pageHandler(3)}} className="pages" style={(this.props.page === 3)?{textDecoration:'underline 3px'}:null} >Utility +</h1>
+                                <a rel="noreferrer" target="_blank" href="https://github.com/ParthBibekar/Welearn-bot/wiki" style={{textDecoration:'none'}}>
+                                    <h1 className="pages">Help?</h1>
+                                </a>
                         </div>
                     </div>
 
                     <div style={{margin:'0 auto 2vh auto'}}>
-                        <a target="_blank" href="https://github.com/ParthBibekar/Welearn-bot">
+                        <a rel="noreferrer"target="_blank" href="https://github.com/ParthBibekar/Welearn-bot">
                             <img src={github} alt="" style={{width:'4vw'}}></img>
                         </a>
                     </div>

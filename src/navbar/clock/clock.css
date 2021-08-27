@@ -1,0 +1,9 @@
+.clock {
+    color: white;
+    margin: auto auto auto 2vw;
+    font-size: 5vh;
+    font-family: 'Roboto', sans-serif;
+    padding: 1vh 2vh;
+    border-radius: 22px;
+    /* background-color: rgba(255,255,255,0.2); */
+}
