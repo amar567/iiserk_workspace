@@ -20,8 +20,10 @@ export default class App extends Component {
         username :'Amardeepsingh',
         page : 1,
         clock : true,
-        pgBackground : 'black',
-        sdBackground : '#00C2FF'
+        pgBackground : '#000000',
+        sdBackground : '#00C2FF',
+        tskBackground : '#CCB2B2',
+        lftBackground : '#ff0000'
       }
   }
 
@@ -41,6 +43,16 @@ export default class App extends Component {
   handleSdBgColorChange = (arg)=>{
     this.setState({sdBackground: arg.hex})
     cookies.set('sdbg',arg.hex)
+  }
+
+  handleTskBgColorChange = (arg)=>{
+    this.setState({tskBackground: arg.hex})
+    cookies.set('tskbg',arg.hex)
+  }
+
+  handleLftBgColorChange = (arg)=>{
+    this.setState({lftBackground: arg.hex})
+    cookies.set('lftbg',arg.hex)
   }
 
   componentDidMount(){
@@ -64,6 +76,26 @@ export default class App extends Component {
       sdbg = '#00C2FF'
     }
     this.setState({sdBackground:sdbg})
+
+    let tskbg = cookies.get('tskbg')
+    if(cookies.get('tskbg') === undefined ){
+      cookies.set('tskbg','#CCB2B2')
+      tskbg = '#CCB2B2'
+    }
+    this.setState({tskBackground:tskbg})
+
+    let lftbg = cookies.get('lftbg')
+    if(cookies.get('lftbg') === undefined ){
+      cookies.set('lftbg','#ff0000')
+      lftbg = '#ff0000'
+    }
+    this.setState({lftBackground:lftbg})
+
+    if(localStorage.getItem('todolst') === null ){
+      console.log(localStorage.getItem('todolst'));
+      console.log('hlo');
+      localStorage.setItem('todolst',JSON.stringify([]))
+    }
   }
 
   render() {
@@ -78,11 +110,11 @@ export default class App extends Component {
             <div className={'rightside'}>
               <div className='nav'>
                 {(this.state.clock === true)?<Clock/>:null}
-                <Navbar clockHandler={this.clockHandler} handlePgBgColorChange={this.handlePgBgColorChange} handleSdBgColorChange={this.handleSdBgColorChange} data={{username:'ahk19ms165',pgBackground:this.state.pgBackground,sdBackground:this.state.sdBackground}}/>
+                <Navbar clockHandler={this.clockHandler} handlePgBgColorChange={this.handlePgBgColorChange} handleSdBgColorChange={this.handleSdBgColorChange} handleTskBgColorChange={this.handleTskBgColorChange} handleLftBgColorChange={this.handleLftBgColorChange} data={{username:'ahk19ms165',pgBackground:this.state.pgBackground,sdBackground:this.state.sdBackground,tskBackground:this.state.tskBackground,lftBackground:this.state.lftBackground}}/>
               </div>
               <div className={'rightBottom'}>
-                {(this.state.page === 1)?<Home data={{leftBlock:'#ffffff',rightBlock:'#ffffff'}}></Home> : null}
-                {(this.state.page === 2)?<Course></Course> : null}
+                {(this.state.page === 1)?<Home data={{lftBackground:this.state.lftBackground,rightBlock:this.state.tskBackground}}></Home> : null}
+                {(this.state.page === 2)?<Course data={{lftBackground:this.state.lftBackground}}></Course> : null}
                 {(this.state.page === 3)?<Util></Util> : null}
               </div>
             </div>

@@ -23,12 +23,22 @@ export default class Navbar extends Component {
             notification : false,
             clock : false,
             bgpicker : false,
-            sdbgpicker : false
+            sdbgpicker : false,
+            lftbgpicker : false,
+            tskbgpicker : false
         }
+    }
+
+    closeColorPickers = ()=>{
+        this.setState({bgpicker : false})
+        this.setState({sdbgpicker : false})
+        this.setState({lftbgpicker : false})
+        this.setState({tskbgpicker : false})
     }
 
     settings = ()=>{
         this.setState({notification: false})
+        this.closeColorPickers()
         this.setState({setting : !this.state.setting})
     }
 
@@ -38,6 +48,7 @@ export default class Navbar extends Component {
     }
 
     handleClock = ()=>{
+        this.closeColorPickers()
         cookies.set('clock',!this.state.clock)
         this.setState({clock : !this.state.clock})
         this.props.clockHandler()
@@ -49,6 +60,14 @@ export default class Navbar extends Component {
 
     handleSdBgColorChange = (arg)=>{
         this.props.handleSdBgColorChange(arg)
+    }
+
+    handleTskBgColorChange = (arg)=>{
+        this.props.handleTskBgColorChange(arg)
+    }
+
+    handleLftBgColorChange = (arg)=>{
+        this.props.handleLftBgColorChange(arg)
     }
 
     componentDidMount(){
@@ -108,7 +127,7 @@ export default class Navbar extends Component {
                             </div>
                             <br></br>
                             <div> 
-                                <div style={{display:'flex', justifyContent:'space-between',cursor:'pointer'}} onClick={()=>{this.setState({bgpicker:!this.state.bgpicker})}}>
+                                <div style={{display:'flex', justifyContent:'space-between',cursor:'pointer'}} onClick={()=>{if(!this.state.bgpicker){this.closeColorPickers()} ; this.setState({bgpicker:!this.state.bgpicker})}  }>
                                     Page_background : <div style={{backgroundColor:this.props.data.pgBackground,height:'30px',width:'30px',borderRadius:'50px'}}/>
                                 </div>
                                 <div style={(this.state.bgpicker)?null:{display:'none'}}>
@@ -117,11 +136,29 @@ export default class Navbar extends Component {
                             </div>
                             <br></br>
                             <div> 
-                                <div style={{display:'flex', justifyContent:'space-between',cursor:'pointer'}} onClick={()=>{this.setState({sdbgpicker:!this.state.sdbgpicker})}}>
+                                <div style={{display:'flex', justifyContent:'space-between',cursor:'pointer'}} onClick={()=>{if(!this.state.sdbgpicker){this.closeColorPickers()} ; this.setState({sdbgpicker:!this.state.sdbgpicker})}  }>
                                     Sidebar_background : <div style={{backgroundColor:this.props.data.sdBackground,height:'30px',width:'30px',borderRadius:'50px'}} />
                                 </div>
                                 <div style={(this.state.sdbgpicker)?null:{display:'none'}}>
                                     <ChromePicker color={ this.props.data.sdBackground } onChange={ this.handleSdBgColorChange } style={{width:'400px'}}/>
+                                </div>
+                            </div>
+                            <br></br>
+                            <div> 
+                                <div style={{display:'flex', justifyContent:'space-between',cursor:'pointer'}} onClick={()=>{if(!this.state.tskbgpicker){this.closeColorPickers()} ; this.setState({tskbgpicker:!this.state.tskbgpicker})}  }>
+                                    Task_background : <div style={{backgroundColor:this.props.data.tskBackground,height:'30px',width:'30px',borderRadius:'50px'}} />
+                                </div>
+                                <div style={(this.state.tskbgpicker)?null:{display:'none'}}>
+                                    <ChromePicker color={ this.props.data.tskBackground } onChange={ this.handleTskBgColorChange} style={{width:'400px'}}/>
+                                </div>
+                            </div>
+                            <br></br>
+                            <div> 
+                                <div style={{display:'flex', justifyContent:'space-between',cursor:'pointer'}} onClick={()=>{if(!this.state.lftbgpicker){this.closeColorPickers()} ; this.setState({lftbgpicker:!this.state.lftbgpicker})}  }>
+                                    Files_background : <div style={{backgroundColor:this.props.data.lftBackground,height:'30px',width:'30px',borderRadius:'50px'}} />
+                                </div>
+                                <div style={(this.state.lftbgpicker)?null:{display:'none'}}>
+                                    <ChromePicker color={ this.props.data.lftBackground } onChange={ this.handleLftBgColorChange} style={{width:'400px'}}/>
                                 </div>
                             </div>
                             <br></br>

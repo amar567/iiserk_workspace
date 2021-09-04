@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import './home.css'
-import {ChromePicker} from 'react-color'
+import Todo from './todo/Todo';
+// import {ChromePicker} from 'react-color'
 
 export default class Home extends Component {
     
@@ -8,27 +9,33 @@ export default class Home extends Component {
         super(props)
 
         this.state = {
-            background : '#ff0000',
+            dirModel : []
         }
     }
 
-    handleChangeComplete = (arg)=>{
-        this.setState({background:arg.hex})
-        // console.log(this.state.background);
+    fetchDir = async()=>{
+        
+        const result = await fetch(`http://localhost:3000/tree`).then((res) => res.json())
+        this.setState({dirModel:result})
+        // console.log(this.state.dirModel);
     }
 
     componentDidMount(){
-
+        this.fetchDir()
     }
 
     render() {
         return (
             <>
                 <div className={'homepgcont'}>
-                    <div className="red" style={{backgroundColor: this.state.background}}>
-                        <ChromePicker color={ this.state.background } onChange={ this.handleChangeComplete }/>
+                    <div className="red" style={{backgroundColor: this.props.data.lftBackground}}>
+                        {this.state.dirModel.map((obj,index)=>{return(
+                            (obj.filetype === "none")?<div key={index}><div> folder </div><br/> </div>:<div key={index}> <div> file </div><br/> </div>
+                        )})}
                     </div>
-                    <div className="grey"></div>
+                    <div className="grey" style={{backgroundColor: this.props.data.rightBlock}}>
+                            <Todo/>
+                    </div>
                 </div>
             </>
         );

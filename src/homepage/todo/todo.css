@@ -1,0 +1,18 @@
+.todoCont{
+    margin: 4vh 4vh;
+}
+
+.tdinput{
+    background-color: white;
+    border: 0;
+}
+
+.tdsubbtn{
+    background-color: limegreen;
+    border: 0;
+}
+
+.tdbtntxt{
+    color: white;
+    line-height: 0;
+}
